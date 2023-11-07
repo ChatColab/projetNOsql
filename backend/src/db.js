@@ -1,23 +1,33 @@
 import { MongoClient } from 'mongodb'
+import 'dotenv/config'
+import { createClient } from 'redis'
 
-const url = 'mongodb://localhost:27017';
-const client = new MongoClient(url);
+const url = process.env.MONGO_URL
+const clientMongo = new MongoClient(url)
 
-// Database Name
-const dbName = 'Stocks';
-
-async function main() {
-  // Use connect method to connect to the server
-  await client.connect();
-  console.log('Connected successfully to server');
-  const db = client.db(dbName);
-  const collection = db.collection('Legumes');
-
-
-  return 'done.';
+const dbName = 'Stocks'
+try {
+  await clientMongo.connect()
+  console.log('Mongo Client Connected')
+} catch (err) {
+  console.error('Mongo Client Error', err)
 }
+const db = clientMongo.db(dbName)
 
-main()
-  .then(console.log)
-  .catch(console.error)
-  .finally(() => client.close());
+export const mongo = db.collection('Legumes')
+
+const clientRedis = createClient({
+  password: process.env.REDIS_PASSWORD,
+  socket: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  },
+})
+
+clientRedis.on('error', (err) => console.log('Redis Client Error', err))
+
+clientRedis.on('connect', () => console.log('Redis Client Connected'))
+
+await clientRedis.connect()
+
+export const redis = clientRedis
