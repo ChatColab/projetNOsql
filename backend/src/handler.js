@@ -1,4 +1,4 @@
-import { mongo } from './db.js'
+import { mongo, redis } from './db.js'
 
 export const addProducts = async (req, res) => {
   const product = {
@@ -18,6 +18,20 @@ export const getProducts = async (req, res) => {
   try {
     const products = await mongo.find({}).toArray()
     res.status(200).json({ response: products })
+  } catch (e) {
+    res.status(500).json({ message: `Product not created : ${e}` })
+  }
+}
+
+export const getProductByName = async (req, res) => {
+  try {
+		const productsRedis = await redis.get(req.params.name)
+		const result = JSON.parse(productsRedis)
+    if (result) {
+      res.status(200).json({ response: result })
+    }
+    const productsMongo = await mongo.find({ name: req.params.name }).toArray()
+    res.status(200).json({ response: productsMongo })
   } catch (e) {
     res.status(500).json({ message: `Product not created : ${e}` })
   }

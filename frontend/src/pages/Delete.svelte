@@ -6,11 +6,11 @@
 	async function handleSubmit(product) {
 		try {
 			const response = await fetch("http://localhost:3000/products", {
-				method: "PUT",
+				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name: product.name, price: product.newPrice }),
+				body: JSON.stringify({ name: product.name }),
 			});
 
 			if (response.ok) {
@@ -31,20 +31,14 @@
 			<div>
 				<h2>{product.name}</h2>
 				<p>{product.price} $</p>
-				<input
-					bind:value={product.newPrice}
-					placeholder="newPrice"
-					type="text"
-				/>
 				<button
 					on:click={() => {
-						nameToUpdate = product.name;
 						handleSubmit(product);
-					}}>CHANGE</button
+					}}>DELETE</button
 				>
 			</div>
 		{/each}
 	{:else}
-		<p>No products for now <strong>Sorry</strong></p>
+		<p>No products to delete for now <strong>Sorry</strong></p>
 	{/if}
 </div>

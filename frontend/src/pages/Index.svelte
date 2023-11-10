@@ -1,18 +1,14 @@
 <script>
 	import { onMount } from "svelte";
-	import {getProducts} from "../utils"
+	import { getProducts } from "../utils";
 	import { apiData } from "../store";
-
+	import List from "../components/List.svelte";
+	let promise;
 	onMount(getProducts);
 </script>
 
 <div id="index">
-	{#each $apiData as product}
-		<div>
-			<h2>{product.name}</h2>
-			<p>{product.price} $</p>
-		</div>
-	{/each}
+			<List list={$apiData} />
 </div>
 
 <style>
