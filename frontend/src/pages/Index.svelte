@@ -3,17 +3,23 @@
 	import { getProducts } from "../utils";
 	import { apiData } from "../store";
 	import List from "../components/List.svelte";
-	let promise;
+	import Create from "../components/Create.svelte";
+	import Search from "../components/Search.svelte";
 	onMount(getProducts);
 </script>
 
 <div id="index">
-			<List list={$apiData} />
+	<div id="utils">
+		<Create />
+		<Search />
+	</div>
+	<List bind:list={$apiData} />
 </div>
 
 <style>
-	#index {
+	#utils {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 30% 70%;
+
 	}
 </style>

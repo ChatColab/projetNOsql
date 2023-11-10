@@ -1,0 +1,17 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+	overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+
+input {
+	font-size: 1.5rem;
+}
+
+button {
+	font-size: 1.5rem;
+}

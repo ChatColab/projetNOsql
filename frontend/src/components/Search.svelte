@@ -1,10 +1,9 @@
 <script>
-	import List from "../components/List.svelte";
 	import { apiData } from "../store";
+	import { getProducts } from "../utils";
 	let name = "";
-	let searchList = $apiData;
 
-	async function findMongo() {
+	const getProductsByName = async () => {
 		try {
 			const response = await fetch(`http://localhost:3000/products/${name}`, {
 				method: "GET",
@@ -17,7 +16,7 @@
 				const result = await response.json();
 				if (result) {
 					console.log("Product found successfully");
-					searchList = result.response;
+					apiData.set(result.response);
 				} else {
 					console.error("Error: Unable to find the product");
 				}
@@ -27,17 +26,36 @@
 		} catch (error) {
 			console.error("Error:", error);
 		}
-	}
+	};
+
+	const resetSearch = () => {
+		name = ""; 
+		getProducts();
+	};
 </script>
 
-<div id="index">
-	<input bind:value={name} placeholder="Products" type="text" />
+<div>
+	<h2>SEARCH FEATURE</h2>
+	<div>
+		<input bind:value={name} placeholder="Products" type="text" />
+		<button
+			on:click={() => {
+				getProductsByName();
+			}}>SEARCH</button
+		>
+	</div>
 	<button
 		on:click={() => {
-			findMongo();
-		}}>SEARCH</button
+			resetSearch();
+		}}>RESET SEARCH</button
 	>
-	{#if searchList.length > 0}
-		<List bind:list={searchList} />
-	{/if}
 </div>
+
+<style>
+	div {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+</style>

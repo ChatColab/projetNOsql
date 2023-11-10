@@ -1,9 +1,8 @@
 <script>
-	import { apiData } from "../store";
 	import { getProducts } from "../utils";
-	let nameToUpdate = "";
 
-	async function handleSubmit(product) {
+	export let product = {};
+	const deleteProducts = async () => {
 		try {
 			const response = await fetch("http://localhost:3000/products", {
 				method: "DELETE",
@@ -22,23 +21,23 @@
 		} catch (error) {
 			console.error("Error:", error);
 		}
-	}
+	};
 </script>
 
-<div id="index">
-	{#if $apiData.length > 0}
-		{#each $apiData as product (product.name)}
-			<div>
-				<h2>{product.name}</h2>
-				<p>{product.price} $</p>
-				<button
-					on:click={() => {
-						handleSubmit(product);
-					}}>DELETE</button
-				>
-			</div>
-		{/each}
-	{:else}
-		<p>No products to delete for now <strong>Sorry</strong></p>
-	{/if}
-</div>
+<button
+	on:click={async () => {
+		await deleteProducts();
+	}}>DELETE</button
+>
+
+<style>
+	button {
+		margin: 0 auto;
+		background-color: red;
+		color: white;
+		border: none;
+		border-radius: 2rem;
+		padding: 1rem;
+		cursor: pointer;
+	}
+</style>

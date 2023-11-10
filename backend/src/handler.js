@@ -8,7 +8,7 @@ export const addProducts = async (req, res) => {
 
   try {
     await mongo.insertOne(product)
-    res.status(200).json({ message: 'Product has been created' })
+    res.status(200).json({ message: product })
   } catch (e) {
     res.status(500).json({ message: `Product not created : ${e}` })
   }
@@ -19,21 +19,30 @@ export const getProducts = async (req, res) => {
     const products = await mongo.find({}).toArray()
     res.status(200).json({ response: products })
   } catch (e) {
-    res.status(500).json({ message: `Product not created : ${e}` })
+    res.status(500).json({ message: `Product not found : ${e}` })
   }
 }
 
 export const getProductByName = async (req, res) => {
   try {
-		const productsRedis = await redis.get(req.params.name)
-		const result = JSON.parse(productsRedis)
-    if (result) {
-      res.status(200).json({ response: result })
+    const productName = req.params.name
+
+    const productsRedis = await redis.hGet('products', productName)
+
+    if (!productsRedis) {
+      const productsMongo = await mongo
+        .find({ name: { $regex: productName, $options: 'i' } })
+        .toArray()
+
+      await redis.hSet('products', productName, JSON.stringify(productsMongo))
+      // TODO : set expiration of 1 hour
+
+      res.status(200).json({ response: productsMongo })
+    } else {
+      res.status(200).json({ response: JSON.parse(productsRedis) })
     }
-    const productsMongo = await mongo.find({ name: req.params.name }).toArray()
-    res.status(200).json({ response: productsMongo })
   } catch (e) {
-    res.status(500).json({ message: `Product not created : ${e}` })
+    res.status(500).json({ message: `Product not found: ${e}` })
   }
 }
 
@@ -43,7 +52,7 @@ export const deleteProducts = async (req, res) => {
     const products = await mongo.deleteOne({ name })
     res.status(200).json({ response: products })
   } catch (e) {
-    res.status(500).json({ message: `Product was deleted : ${e}` })
+    res.status(500).json({ message: `Product was not deleted : ${e}` })
   }
 }
 
@@ -54,6 +63,6 @@ export const updateProducts = async (req, res) => {
     const products = await mongo.updateOne({ name }, { $set: { price } })
     res.status(200).json({ response: products })
   } catch (e) {
-    res.status(500).json({ message: `Product was updated : ${e}` })
+    res.status(500).json({ message: `Product was not updated : ${e}` })
   }
 }
