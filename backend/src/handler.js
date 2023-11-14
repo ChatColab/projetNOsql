@@ -35,7 +35,7 @@ export const getProductByName = async (req, res) => {
         .toArray()
 
       await redis.hSet('products', productName, JSON.stringify(productsMongo))
-      // TODO : set expiration of 1 hour
+			await redis.expire('products', productName, 10)
 
       res.status(200).json({ response: productsMongo })
     } else {
