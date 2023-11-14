@@ -1,4 +1,6 @@
 <script>
+    import { onMount } from "svelte";
+
   let logs = [];
   const getAllLogs = async () => {
     try {
@@ -24,6 +26,8 @@
       console.error("Error:", error);
     }
   };
+
+	onMount(getAllLogs)
 </script>
 
 <div>
