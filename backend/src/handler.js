@@ -35,7 +35,8 @@ export const getProductByName = async (req, res) => {
         .toArray()
 
       await redis.hSet('products', productName, JSON.stringify(productsMongo))
-			await redis.expire('products', productName, 10)
+      //use expireat to set expiration time to 1hr
+      await redis.expire('products', 10, productName)
 
       res.status(200).json({ response: productsMongo })
     } else {
@@ -64,5 +65,16 @@ export const updateProducts = async (req, res) => {
     res.status(200).json({ response: products })
   } catch (e) {
     res.status(500).json({ message: `Product was not updated : ${e}` })
+  }
+}
+
+//want to add a new function that will get all products in redis
+
+export const getAllLogs = async (req, res) => {
+  try {
+    const logs = await redis.hGetAll('products')
+    res.status(200).json({ response: logs })
+  } catch (e) {
+    res.status(500).json({ message: `Logs not found : ${e}` })
   }
 }
