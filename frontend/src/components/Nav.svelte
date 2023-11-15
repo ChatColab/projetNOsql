@@ -18,4 +18,8 @@
 		color: black;
 		font-size: 2rem;
 	}
+
+	nav a:hover {
+		color: red;
+	}
 </style>
