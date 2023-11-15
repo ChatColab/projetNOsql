@@ -27,16 +27,15 @@ export const getProductByName = async (req, res) => {
   try {
     const productName = req.params.name
 
-    const productsRedis = await redis.hGet('products', productName)
+    const productsRedis = await redis.get(productName)
 
     if (!productsRedis) {
       const productsMongo = await mongo
         .find({ name: { $regex: productName, $options: 'i' } })
         .toArray()
 
-      await redis.hSet('products', productName, JSON.stringify(productsMongo))
-      //use expireat to set expiration time to 1hr
-      await redis.expire('products', 10, productName)
+      await redis.set(productName, JSON.stringify(productsMongo))
+      await redis.expire(productName, 3600)
 
       res.status(200).json({ response: productsMongo })
     } else {
@@ -72,8 +71,16 @@ export const updateProducts = async (req, res) => {
 
 export const getAllLogs = async (req, res) => {
   try {
-    const logs = await redis.hGetAll('products')
-    res.status(200).json({ response: logs })
+    const keys = await redis.keys('*')
+
+		const result = []
+
+		for (const key of keys) {
+			const value = await redis.get(key)
+			result.push({ key, value })
+		}
+
+    res.status(200).json({ response: result })
   } catch (e) {
     res.status(500).json({ message: `Logs not found : ${e}` })
   }
