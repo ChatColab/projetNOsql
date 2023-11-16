@@ -40,6 +40,9 @@
 				<div>
 					{log.value}
 				</div>
+				<div>
+					Time to leave : {log.ttl}
+				</div>
 			</div>
 		{/each}
 	</div>
