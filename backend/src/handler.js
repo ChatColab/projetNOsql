@@ -67,8 +67,6 @@ export const updateProducts = async (req, res) => {
   }
 }
 
-//want to add a new function that will get all products in redis
-
 export const getAllLogs = async (req, res) => {
   try {
     const keys = await redis.keys('*')
@@ -76,8 +74,13 @@ export const getAllLogs = async (req, res) => {
 		const result = []
 
 		for (const key of keys) {
+			console.log(key)
 			const value = await redis.get(key)
-			result.push({ key, value })
+
+			let ttl = await redis.ttl(key)
+			ttl = JSON.parse(ttl)
+
+			result.push({ key, value: value, ttl: ttl })
 		}
 
     res.status(200).json({ response: result })

@@ -29,7 +29,7 @@
 	};
 
 	const resetSearch = () => {
-		name = ""; 
+		name = "";
 		getProducts();
 	};
 </script>
@@ -40,7 +40,9 @@
 		<input bind:value={name} placeholder="Products" type="text" />
 		<button
 			on:click={() => {
-				getProductsByName();
+				if (name !== "") {
+					getProductsByName();
+				}
 			}}>SEARCH</button
 		>
 	</div>
