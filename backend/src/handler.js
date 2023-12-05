@@ -34,7 +34,11 @@ export const getProductByName = async (req, res) => {
         .find({ name: { $regex: productName, $options: 'i' } })
         .toArray()
 
-      await redis.set(productName, JSON.stringify(productsMongo))
+      if (productsMongo.length == 0) {
+				await redis.set(productName, "Nothing Found With this Reasearch")
+      }else{
+      	await redis.set(productName, JSON.stringify(productsMongo))
+			}
       await redis.expire(productName, 3600)
 
       res.status(200).json({ response: productsMongo })
@@ -71,17 +75,21 @@ export const getAllLogs = async (req, res) => {
   try {
     const keys = await redis.keys('*')
 
-		const result = []
+    const result = []
+    console.log('result', result)
 
-		for (const key of keys) {
-			console.log(key)
-			const value = await redis.get(key)
+    for (const key of keys) {
+      console.log('key', key)
+      const value = await redis.get(key)
+      console.log('value', value)
 
-			let ttl = await redis.ttl(key)
-			ttl = JSON.parse(ttl)
+      let ttl = await redis.ttl(key)
+      console.log('ttl', ttl)
+      ttl = JSON.parse(ttl)
+      console.log('ttl a', ttl)
 
-			result.push({ key, value: value, ttl: ttl })
-		}
+      result.push({ key, value: value, ttl: ttl })
+    }
 
     res.status(200).json({ response: result })
   } catch (e) {

@@ -1,4 +1,6 @@
 <script>
+    import { getProducts } from "../utils";
+
 	let name = "";
 	let price;
 
@@ -20,6 +22,7 @@
 		await createProducts();
 		name = ''
 		price = ''
+		getProducts();
 	};
 </script>
 
