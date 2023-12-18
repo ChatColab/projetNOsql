@@ -3,6 +3,7 @@
 
 	let name = "";
 	let price;
+	let quantite;
 
 	const createProducts = async () => {
 		try {
@@ -11,7 +12,7 @@
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name, price }),
+				body: JSON.stringify({ name, price, quantite }),
 			});
 		} catch (error) {
 			console.error("Error:", error);
@@ -22,6 +23,7 @@
 		await createProducts();
 		name = ''
 		price = ''
+		quantite = ''
 		getProducts();
 	};
 </script>
@@ -31,6 +33,7 @@
 	<div>
 		<input bind:value={name} placeholder="name" type="text" />
 		<input bind:value={price} placeholder="price" type="text" />
+		<input bind:value={quantite} placeholder="quantite" type="text" />
 	</div>
 	<button type="submit">SEND</button>
 </form>

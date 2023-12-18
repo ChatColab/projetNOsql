@@ -4,6 +4,7 @@ export const addProducts = async (req, res) => {
   const product = {
     name: req.body.name,
     price: req.body.price,
+		quantite: req.body.quantite
   }
 
   try {
@@ -61,10 +62,10 @@ export const deleteProducts = async (req, res) => {
 }
 
 export const updateProducts = async (req, res) => {
-  const { name, price } = req.body
+  const { name, price , quantite} = req.body
 
   try {
-    const products = await mongo.updateOne({ name }, { $set: { price } })
+    const products = await mongo.updateOne({ name }, { $set: { price, quantite } })
     res.status(200).json({ response: products })
   } catch (e) {
     res.status(500).json({ message: `Product was not updated : ${e}` })

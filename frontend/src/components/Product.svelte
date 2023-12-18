@@ -8,6 +8,7 @@
 <div>
 	<h2>{product.name}</h2>
 	<p>{product.price} $</p>
+	<p>{product.quantite}</p>
 	<Update {product} />
 	<Delete {product} />
 </div>

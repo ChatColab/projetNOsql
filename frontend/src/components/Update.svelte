@@ -4,6 +4,7 @@
 	let nameToUpdate = "";
 	export let product = {};
 	let newPrice;
+	let newQuantite;
 	const changeProducts = async () => {
 		try {
 			const response = await fetch("http://localhost:3000/products", {
@@ -11,7 +12,7 @@
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name: product.name, price: newPrice }),
+				body: JSON.stringify({ name: product.name, price: newPrice, quantite: newQuantite }),
 			});
 
 			if (response.ok) {
@@ -28,6 +29,7 @@
 
 <div>
 	<input bind:value={newPrice} placeholder="newPrice" type="text" />
+	<input bind:value={newQuantite} placeholder="newQuantite" type="text" />
 	<button
 		on:click={async () => {
 			nameToUpdate = product.name;
