@@ -3,6 +3,7 @@ import 'dotenv/config'
 import { createClient } from 'redis'
 
 const url = process.env.MONGO_URL
+console.log(url)
 const clientMongo = new MongoClient(url)
 
 const dbName = 'Stocks'
@@ -14,7 +15,7 @@ try {
 }
 const db = clientMongo.db(dbName)
 
-export const mongo = db.collection('Legumes')
+export const mongo = db.collection('SportsArticles')
 
 const clientRedis = createClient({
   password: process.env.REDIS_PASSWORD,
