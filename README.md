@@ -1,8 +1,12 @@
-# projetBaseDeDonnees
+# Pour tester le projet :
+
+- Modifier à votre sauce le backend/.envDefault
+
+- Puis faire un "docker compose up -d --build" pour lancer la solution ;)
 
 
-# Run the Project
+# Joseph Veys
+# x
+# Florian Escande
 
-Remplir le .env dans le dossier backend
 
-puis lancer "docker compose up -d --build"
