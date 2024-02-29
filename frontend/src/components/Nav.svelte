@@ -1,6 +1,6 @@
 <nav>
-	<a href="/">HOME</a>
-	<a href="/log">LOG</a>
+	<a href="/">Accueil</a>
+	<a href="/log">Page de logs</a>
 </nav>
 
 <style>
@@ -10,7 +10,7 @@
 		justify-content: space-around;
 		align-items: center;
 		height: 4rem;
-		border-bottom: 3px solid green;
+		border-bottom: 3px solid black;
 	}
 
 	nav a {
@@ -20,6 +20,6 @@
 	}
 
 	nav a:hover {
-		color: red;
+		color: white;
 	}
 </style>

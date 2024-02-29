@@ -29,13 +29,13 @@
 </script>
 
 <form on:submit|preventDefault={async () => await handleSubmit()}>
-	<h2>CREATE A PRODUCT</h2>
+	<h2>Créer un article de sport :)</h2>
 	<div>
-		<input bind:value={name} placeholder="name" type="text" />
-		<input bind:value={price} placeholder="price" type="text" />
-		<input bind:value={quantite} placeholder="quantite" type="text" />
+		<input bind:value={name} placeholder="Libellé" type="text" />
+		<input bind:value={price} placeholder="Prix" type="text" />
+		<input bind:value={quantite} placeholder="Quantité" type="text" />
 	</div>
-	<button type="submit">SEND</button>
+	<button type="submit">Valider</button>
 </form>
 
 <style>

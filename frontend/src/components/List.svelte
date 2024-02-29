@@ -11,5 +11,5 @@
 		{/each}
 	</div>
 {:else}
-	<p>...Loading</p>
+	<p>Chargement ...</p>
 {/if}

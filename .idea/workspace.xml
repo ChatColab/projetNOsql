@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70823133-7285-4022-b043-09254363351f" name="Changes" comment="" />
+    <list default="true" id="70823133-7285-4022-b043-09254363351f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Create.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Create.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/List.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/List.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Nav.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Search.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Search.svelte" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,15 +37,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/josep/Desktop/GerardBUT3",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Admin/Desktop/GerardBUT3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\Admin\\AppData\\Local\\JetBrains\\Toolbox\\apps\\WebStorm\\ch-0\\233.14015.89\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -56,6 +63,8 @@
       <workItem from="1706869327736" duration="599000" />
       <workItem from="1709054570840" duration="2101000" />
       <workItem from="1709228136385" duration="6648000" />
+      <workItem from="1709237429678" duration="66000" />
+      <workItem from="1709238047540" duration="1597000" />
     </task>
     <servers />
   </component>

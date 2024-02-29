@@ -34,22 +34,22 @@
 	};
 </script>
 
-<div>
-	<h2>SEARCH FEATURE</h2>
+<div class="columned">
+	<h2>Rechercher un article :wink</h2>
 	<div>
-		<input bind:value={name} placeholder="Products" type="text" />
+		<input bind:value={name} placeholder="Articles" type="text" />
 		<button
 			on:click={() => {
 				if (name !== "") {
 					getProductsByName();
 				}
-			}}>SEARCH</button
+			}}>Rechercher</button
 		>
 	</div>
 	<button
 		on:click={() => {
 			resetSearch();
-		}}>RESET SEARCH</button
+		}}>Clear</button
 	>
 </div>
 
